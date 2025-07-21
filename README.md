@@ -1,7 +1,6 @@
 # Laravel Morph Category
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/veiliglanceren/laravel-morph-categories.svg?style=flat-square)](https://packagist.org/packages/veiliglanceren/laravel-morph-category)
-[![Tests](https://github.com/veiliglanceren/laravel-morph-categories/actions/workflows/tests.yml/badge.svg)](https://github.com/veiliglanceren/laravel-morph-category/actions)
 [![Total Downloads](https://img.shields.io/packagist/dt/veiliglanceren/laravel-morph-categories.svg?style=flat-square)](https://packagist.org/packages/veiliglanceren/laravel-morph-category)
 
 A Laravel package to add polymorphic category support to any model. Easily attach, detach, sync, and query categories using elegant Eloquent relationships.
