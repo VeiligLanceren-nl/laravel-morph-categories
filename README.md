@@ -11,7 +11,7 @@ A Laravel package to add polymorphic category support to any model. Easily attac
 ## 🚀 Installation
 
 ```bash
-composer require veiliglanceren/laravel-morph-category
+composer require veiliglanceren/laravel-morph-categories
 ```
 
 ---
