@@ -27,7 +27,10 @@
     "autoload": {
         "psr-4": {
             "VeiligLanceren\\LaravelMorphCategories\\": "src/"
-        }
+        },
+        "files": [
+            "src/Support/Helpers/models.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
