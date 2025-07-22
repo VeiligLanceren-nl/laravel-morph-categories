@@ -5,7 +5,6 @@ namespace VeiligLanceren\LaravelMorphCategories\Support\Traits;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use VeiligLanceren\LaravelMorphCategories\Models\Category;
 
 trait HasCategory
 {
@@ -16,8 +15,11 @@ trait HasCategory
      */
     public function categories(): MorphToMany
     {
-        /** @var Model $this */
-        return $this->morphToMany(Category::class, 'categoryable');
+        return $this->morphToMany(
+            category_model(),
+            'categoryable',
+            categoryable_table()
+        );
     }
 
     /**
@@ -26,7 +28,7 @@ trait HasCategory
      * @param  int|array|Collection|Model $categories
      * @return void
      */
-    public function attachCategories($categories): void
+    public function attachCategories(mixed $categories): void
     {
         $this->categories()->attach($categories);
     }
@@ -37,7 +39,7 @@ trait HasCategory
      * @param  int|array|Collection|Model|null  $categories
      * @return void
      */
-    public function detachCategories($categories = null): void
+    public function detachCategories(mixed $categories = null): void
     {
         $this->categories()->detach($categories);
     }
@@ -48,7 +50,7 @@ trait HasCategory
      * @param  int|array|Collection  $categories
      * @return void
      */
-    public function syncCategories($categories): void
+    public function syncCategories(mixed $categories): void
     {
         $this->categories()->sync($categories);
     }
@@ -56,17 +58,17 @@ trait HasCategory
     /**
      * Check if the model has a given category.
      *
-     * @param Category|int|string $category
+     * @param Model|int|string $category
      * @return bool
      */
-    public function hasCategory(Category|int|string $category): bool
+    public function hasCategory(Model|int|string $category): bool
     {
-        if ($category instanceof Category) {
+        if ($category instanceof Model) {
             $categoryId = $category->getKey();
         } elseif (is_numeric($category)) {
             $categoryId = $category;
         } elseif (is_string($category)) {
-            $categoryId = Category::query()
+            $categoryId = category_model()::query()
                 ->where('slug', $category)
                 ->value('id');
 
@@ -77,6 +79,9 @@ trait HasCategory
             return false;
         }
 
-        return $this->categories()->pluck('id')->contains($categoryId);
+        return $this->categories()
+            ->pluck('id')
+            ->contains($categoryId);
     }
+
 }

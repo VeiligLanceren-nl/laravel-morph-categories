@@ -24,6 +24,16 @@ class Category extends Model
     ];
 
     /**
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->table = config('category.tables.categories', 'categories');
+    }
+
+    /**
      * @return BelongsTo
      */
     public function parent(): BelongsTo

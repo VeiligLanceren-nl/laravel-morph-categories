@@ -49,6 +49,36 @@ $post->hasCategory($category->id); // by ID
 
 ---
 
+### ✅ Use Cases
+
+- Rename tables if you already use `categories` for something else.
+- Replace the model class with your own `Category` or `Categoryable` implementation.
+
+## ⚙️ Configuration
+
+You can publish and customize the config file:
+
+```bash
+php artisan vendor:publish --tag=category-config
+```
+
+This will create a file at `config/category.php` with the following structure:
+
+```php
+return [
+
+    'tables' => [
+        'categories' => 'categories',
+        'categoryables' => 'categoryables',
+    ],
+
+    'models' => [
+        'category' => \VeiligLanceren\LaravelMorphCategories\Models\Category::class,
+        'categoryable' => \VeiligLanceren\LaravelMorphCategories\Models\Categoryable::class,
+    ],
+];
+```
+
 ## 🔁 Relationships
 
 ```php

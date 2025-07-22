@@ -6,10 +6,17 @@ use Illuminate\Database\Eloquent\Relations\MorphPivot;
 
 class Categoryable extends MorphPivot
 {
+    protected $table;
+
     /**
-     * @var string
+     * @param array $attributes
      */
-    protected $table = 'categoryables';
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->table = config('category.tables.categoryables', 'categoryables');
+    }
 
     /**
      * @var bool
