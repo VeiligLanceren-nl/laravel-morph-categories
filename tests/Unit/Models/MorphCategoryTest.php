@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use VeiligLanceren\LaravelMorphCategories\Models\Category;
+use VeiligLanceren\LaravelMorphCategories\Models\MorphCategory;
 
 uses(RefreshDatabase::class);
 
 it('can create a category', function () {
-    $category = Category::factory()->create();
+    $category = MorphCategory::factory()->create();
 
     expect($category->slug)
         ->toBe(Str::replace(
@@ -18,8 +18,8 @@ it('can create a category', function () {
 });
 
 it('can have a parent category', function () {
-    $parent = Category::factory()->create(['name' => 'Parent']);
-    $child = Category::factory()->create([
+    $parent = MorphCategory::factory()->create(['name' => 'Parent']);
+    $child = MorphCategory::factory()->create([
         'name' => 'Child',
         'parent_id' => $parent->id,
     ]);
@@ -29,16 +29,16 @@ it('can have a parent category', function () {
 });
 
 it('can have children categories', function () {
-    $parent = Category::factory()->create();
-    $child1 = Category::factory()->create(['parent_id' => $parent->id]);
-    $child2 = Category::factory()->create(['parent_id' => $parent->id]);
+    $parent = MorphCategory::factory()->create();
+    $child1 = MorphCategory::factory()->create(['parent_id' => $parent->id]);
+    $child2 = MorphCategory::factory()->create(['parent_id' => $parent->id]);
 
     expect($parent->children)->toHaveCount(2)
         ->and($parent->children->pluck('id'))->toContain($child1->id, $child2->id);
 });
 
 it('slug is generated correctly', function () {
-    $category = Category::factory()->create();
+    $category = MorphCategory::factory()->create();
 
     expect($category->slug)->toBe(Str::replace([' '], ['-'], Str::lower($category->name)));
 });

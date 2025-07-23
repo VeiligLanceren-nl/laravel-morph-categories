@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use VeiligLanceren\LaravelMorphCategories\Models\Category;
+use VeiligLanceren\LaravelMorphCategories\Models\MorphCategory;
 use VeiligLanceren\LaravelMorphCategories\Support\Traits\HasCategory;
 
 class CategoryableTestModel extends Model
@@ -24,44 +24,44 @@ beforeEach(function () {
 
     $this->model = CategoryableTestModel::create();
 
-    $this->cat1 = Category::create(['name' => 'Cat 1', 'slug' => 'cat-1']);
-    $this->cat2 = Category::create(['name' => 'Cat 2', 'slug' => 'cat-2']);
+    $this->cat1 = MorphCategory::create(['name' => 'Cat 1', 'slug' => 'cat-1']);
+    $this->cat2 = MorphCategory::create(['name' => 'Cat 2', 'slug' => 'cat-2']);
 
     $this->model->attachCategories([$this->cat1->id, $this->cat2->id]);
 });
 
 it('can attach categories', function () {
     $model = CategoryableTestModel::create();
-    $cat1 = Category::create(['name' => 'Cat 1', 'slug' => 'cat-1']);
-    $cat2 = Category::create(['name' => 'Cat 2', 'slug' => 'cat-2']);
+    $cat1 = MorphCategory::create(['name' => 'Cat 1', 'slug' => 'cat-1']);
+    $cat2 = MorphCategory::create(['name' => 'Cat 2', 'slug' => 'cat-2']);
 
     $model->attachCategories([$cat1->id, $cat2->id]);
 
-    expect($model->categories()->count())->toBe(2);
-    expect($model->categories()->pluck('id'))->toContain($cat1->id, $cat2->id);
+    expect($model->morphCategories()->count())->toBe(2);
+    expect($model->morphCategories()->pluck('id'))->toContain($cat1->id, $cat2->id);
 });
 
 it('can detach categories', function () {
     $model = CategoryableTestModel::create();
-    $cat1 = Category::create(['name' => 'Cat 1', 'slug' => 'cat-1']);
+    $cat1 = MorphCategory::create(['name' => 'Cat 1', 'slug' => 'cat-1']);
 
     $model->attachCategories($cat1->id);
     $model->detachCategories($cat1->id);
 
-    expect($model->categories()->count())->toBe(0);
+    expect($model->morphCategories()->count())->toBe(0);
 });
 
 it('can sync categories', function () {
     $model = CategoryableTestModel::create();
-    $cat1 = Category::create(['name' => 'Cat 1', 'slug' => 'cat-1']);
-    $cat2 = Category::create(['name' => 'Cat 2', 'slug' => 'cat-2']);
+    $cat1 = MorphCategory::create(['name' => 'Cat 1', 'slug' => 'cat-1']);
+    $cat2 = MorphCategory::create(['name' => 'Cat 2', 'slug' => 'cat-2']);
 
     $model->syncCategories([$cat1->id]);
-    expect($model->categories()->pluck('id'))->toContain($cat1->id);
+    expect($model->morphCategories()->pluck('id'))->toContain($cat1->id);
 
     $model->syncCategories([$cat2->id]);
-    expect($model->categories()->pluck('id'))->toContain($cat2->id);
-    expect($model->categories()->pluck('id'))->not->toContain($cat1->id);
+    expect($model->morphCategories()->pluck('id'))->toContain($cat2->id);
+    expect($model->morphCategories()->pluck('id'))->not->toContain($cat1->id);
 });
 
 it('can check category by id', function () {

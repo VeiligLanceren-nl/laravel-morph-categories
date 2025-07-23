@@ -4,7 +4,7 @@ namespace VeiligLanceren\LaravelMorphCategories\Models;
 
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 
-class Categoryable extends MorphPivot
+class MorphCategoryable extends MorphPivot
 {
     protected $table;
 
@@ -15,7 +15,7 @@ class Categoryable extends MorphPivot
     {
         parent::__construct($attributes);
 
-        $this->table = config('category.tables.categoryables', 'categoryables');
+        $this->table = config('category.tables.categoryables', 'morph_categoryables');
     }
 
     /**

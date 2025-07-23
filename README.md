@@ -32,7 +32,7 @@ class Post extends Model
 
 ```php
 $post = Post::find(1);
-$category = Category::create(['name' => 'News']);
+$category = MorphCategory::create(['name' => 'News']);
 
 $post->attachCategory($category);
 $post->detachCategory($category);
@@ -73,8 +73,8 @@ return [
     ],
 
     'models' => [
-        'category' => \VeiligLanceren\LaravelMorphCategories\Models\Category::class,
-        'categoryable' => \VeiligLanceren\LaravelMorphCategories\Models\Categoryable::class,
+        'category' => \VeiligLanceren\LaravelMorphCategories\Models\MorphCategory::class,
+        'categoryable' => \VeiligLanceren\LaravelMorphCategories\Models\MorphCategoryable::class,
     ],
 ];
 ```
@@ -82,9 +82,9 @@ return [
 ## 🔁 Relationships
 
 ```php
-$post->categories; // Collection of Category models
+$post->morphCategories; // Collection of MorphCategory models
 
-$category->categoryables; // MorphToMany to all related models
+$category->morphCategoryables; // MorphToMany to all related models
 ```
 
 ---

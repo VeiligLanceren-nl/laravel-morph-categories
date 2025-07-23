@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use VeiligLanceren\LaravelMorphCategories\Database\Factories\CategoryFactory;
+use VeiligLanceren\LaravelMorphCategories\Database\Factories\MorphCategoryFactory;
 
-class Category extends Model
+class MorphCategory extends Model
 {
     use HasFactory, HasSlug;
 
@@ -30,7 +30,7 @@ class Category extends Model
     {
         parent::__construct($attributes);
 
-        $this->table = config('category.tables.categories', 'categories');
+        $this->table = config('category.tables.categories', 'morph_categories');
     }
 
     /**
@@ -42,7 +42,7 @@ class Category extends Model
     }
 
     /**
-     * @return HasMany<Category>
+     * @return HasMany<MorphCategory>
      */
     public function children(): HasMany
     {
@@ -50,11 +50,11 @@ class Category extends Model
     }
 
     /**
-     * @return HasMany<Categoryable>
+     * @return HasMany<MorphCategoryable>
      */
-    public function categoryables(): HasMany
+    public function morphCategoryables(): HasMany
     {
-        return $this->hasMany(Categoryable::class);
+        return $this->hasMany(MorphCategoryable::class);
     }
 
     /**
@@ -69,10 +69,10 @@ class Category extends Model
     }
 
     /**
-     * @return CategoryFactory
+     * @return MorphCategoryFactory
      */
-    protected static function newFactory(): CategoryFactory
+    protected static function newFactory(): MorphCategoryFactory
     {
-        return CategoryFactory::new();
+        return MorphCategoryFactory::new();
     }
 }

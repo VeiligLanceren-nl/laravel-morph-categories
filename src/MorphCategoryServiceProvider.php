@@ -4,7 +4,7 @@ namespace VeiligLanceren\LaravelMorphCategories;
 
 use Illuminate\Support\ServiceProvider;
 
-class CategoryServiceProvider extends ServiceProvider
+class MorphCategoryServiceProvider extends ServiceProvider
 {
     /**
      * @return void
@@ -29,10 +29,8 @@ class CategoryServiceProvider extends ServiceProvider
             __DIR__ . '/../config/category.php' => config_path('category.php'),
         ], 'category-config');
 
-        if (is_dir(__DIR__ . '/../database/migrations')) {
-            $this->publishes([
-                __DIR__ . '/../database/migrations' => database_path('migrations'),
-            ], 'category-migration');
-        }
+        $this->publishes([
+            __DIR__ . '/../database/migrations' => database_path('migrations'),
+        ], 'category-migration');
     }
 }
