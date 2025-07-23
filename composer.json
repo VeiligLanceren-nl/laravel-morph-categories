@@ -4,8 +4,8 @@
     "keywords": ["laravel", "category", "morph", "polymorphic", "taxonomy"],
     "homepage": "https://github.com/veiliglanceren-nl/laravel-morph-categories",
     "support": {
-        "issues": "https://github.com/veiliglanceren/laravel-morph-category/issues",
-        "source": "https://github.com/veiliglanceren/laravel-morph-category"
+        "issues": "https://github.com/veiliglanceren/laravel-morph-categories/issues",
+        "source": "https://github.com/veiliglanceren/laravel-morph-categories"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
