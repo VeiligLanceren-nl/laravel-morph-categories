@@ -1,16 +1,16 @@
 <?php
 
-use VeiligLanceren\LaravelMorphCategories\Models\Category;
-use VeiligLanceren\LaravelMorphCategories\Models\Categoryable;
+use VeiligLanceren\LaravelMorphCategories\Models\MorphCategory;
+use VeiligLanceren\LaravelMorphCategories\Models\MorphCategoryable;
 
 return [
     'tables' => [
-        'categories' => 'categories',
-        'categoryables' => 'categoryables',
+        'categories' => 'morph_categories',
+        'categoryables' => 'morph_categoryables',
     ],
 
     'models' => [
-        'category' => Category::class,
-        'categoryable' => Categoryable::class,
+        'category' => MorphCategory::class,
+        'categoryable' => MorphCategoryable::class,
     ],
 ];

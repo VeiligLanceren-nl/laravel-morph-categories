@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Eloquent\Model;
-use VeiligLanceren\LaravelMorphCategories\Models\Category;
-use VeiligLanceren\LaravelMorphCategories\Models\Categoryable;
+use VeiligLanceren\LaravelMorphCategories\Models\MorphCategory;
+use VeiligLanceren\LaravelMorphCategories\Models\MorphCategoryable;
 
 if (! function_exists('category_model')) {
     /**
@@ -10,7 +10,7 @@ if (! function_exists('category_model')) {
      */
     function category_model(): string
     {
-        return config('category.models.category', Category::class);
+        return config('category.models.category', MorphCategory::class);
     }
 }
 
@@ -20,7 +20,7 @@ if (! function_exists('categoryable_model')) {
      */
     function categoryable_model(): string
     {
-        return config('category.models.categoryable', Categoryable::class);
+        return config('category.models.categoryable', MorphCategoryable::class);
     }
 }
 

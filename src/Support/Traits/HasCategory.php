@@ -13,11 +13,11 @@ trait HasCategory
      *
      * @return MorphToMany
      */
-    public function categories(): MorphToMany
+    public function morphCategories(): MorphToMany
     {
         return $this->morphToMany(
             category_model(),
-            'categoryable',
+            'morph_categoryable',
             categoryable_table()
         );
     }
@@ -30,7 +30,7 @@ trait HasCategory
      */
     public function attachCategories(mixed $categories): void
     {
-        $this->categories()->attach($categories);
+        $this->morphCategories()->attach($categories);
     }
 
     /**
@@ -41,7 +41,7 @@ trait HasCategory
      */
     public function detachCategories(mixed $categories = null): void
     {
-        $this->categories()->detach($categories);
+        $this->morphCategories()->detach($categories);
     }
 
     /**
@@ -52,7 +52,7 @@ trait HasCategory
      */
     public function syncCategories(mixed $categories): void
     {
-        $this->categories()->sync($categories);
+        $this->morphCategories()->sync($categories);
     }
 
     /**
@@ -79,7 +79,7 @@ trait HasCategory
             return false;
         }
 
-        return $this->categories()
+        return $this->morphCategories()
             ->pluck('id')
             ->contains($categoryId);
     }
