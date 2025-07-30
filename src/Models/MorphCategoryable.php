@@ -2,6 +2,7 @@
 
 namespace VeiligLanceren\LaravelMorphCategories\Models;
 
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 
 class MorphCategoryable extends MorphPivot
@@ -27,4 +28,16 @@ class MorphCategoryable extends MorphPivot
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * @return MorphTo
+     */
+    public function categoryable(): MorphTo
+    {
+        return $this->morphTo(
+            __FUNCTION__,
+            'morph_categoryable_type',
+            'morph_categoryable_id'
+        );
+    }
 }
