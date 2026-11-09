@@ -13,6 +13,17 @@ A Laravel package to add polymorphic category support to any model. Easily attac
 composer require veiliglanceren/laravel-morph-categories
 ```
 
+### Requirements
+
+| Package version | PHP          | Laravel          |
+|-----------------|--------------|------------------|
+| 3.x             | 8.2 or newer | 12.x, 13.x       |
+| 2.x             | 8.1 or newer | 10.x, 11.x, 12.x |
+
+### Upgrading to 3.0
+
+Version 3.0 drops support for Laravel 10 and 11 and PHP 8.1, and adds support for Laravel 13. There are no API changes. If you are still on Laravel 10 or 11, stay on `^2.0`.
+
 ---
 
 ## 📦 Usage
