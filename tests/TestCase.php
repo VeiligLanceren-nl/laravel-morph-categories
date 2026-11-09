@@ -24,9 +24,14 @@ class TestCase extends BaseTestCase
      */
     protected function getPackageProviders($app): array
     {
-        return [
-            MorphCategoryServiceProvider::class,
-        ];
+        $providers = [MorphCategoryServiceProvider::class];
+
+        // spatie/laravel-sluggable ^4 registers its action config via a service provider.
+        if (class_exists(\Spatie\Sluggable\SluggableServiceProvider::class)) {
+            array_unshift($providers, \Spatie\Sluggable\SluggableServiceProvider::class);
+        }
+
+        return $providers;
     }
 
     /**
